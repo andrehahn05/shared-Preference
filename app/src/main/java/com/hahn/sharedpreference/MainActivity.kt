@@ -57,6 +57,14 @@ class MainActivity : AppCompatActivity() {
         snackbar.setBackgroundTint(Color.WHITE)
         snackbar.setTextColor(Color.BLACK)
         snackbar.show()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        val preference = getSharedPreferences(PREFERENCES_FILE , MODE_PRIVATE)
+        val color = preference.getString("cor","")
+        if(color!!.isNotEmpty()){
+            binding.layoutMain.setBackgroundColor(Color.parseColor(color))
+        }
     }
 }
